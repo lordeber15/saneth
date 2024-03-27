@@ -1,5 +1,7 @@
 import logo from "../assets/svg/logoSaneth.svg";
+import { useNavigate } from "react-router-dom";
 function Login() {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col items-center bg-gradient-to-bl from-teal-200 to-teal-900 h-screen justify-center">
       <div className="flex justify-center rounded-md flex-col w-72 gap-2">
@@ -14,7 +16,10 @@ function Login() {
           type="password"
           placeholder="Contraseña"
         />
-        <button className=" bg-teal-950 py-2 rounded-md font-bold text-teal-300">
+        <button
+          className=" bg-teal-950 py-2 rounded-md font-bold text-teal-300"
+          onClick={() => navigate("/dashboard")}
+        >
           Ingresar
         </button>
       </div>
