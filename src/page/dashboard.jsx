@@ -1,7 +1,7 @@
-import Historias from "./historias";
+import ListadeHistorias from "./listadeHistorias";
 
 function Dashboard() {
-  return <Historias />;
+  return <ListadeHistorias />;
 }
 
 export default Dashboard;

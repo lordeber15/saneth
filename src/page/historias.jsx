@@ -1,9 +1,23 @@
+import { useNavigate } from "react-router-dom";
 function Historias() {
+  const navigate = useNavigate();
   return (
-    <div className="w-screen px-20 py-10 flex gap-3 flex-col">
-      <h1 className="text-3xl font-bold flex justify-center text-teal-900">
-        Historias Clinicas
-      </h1>
+    <div className="w-screen px-40 py-10 flex gap-3 flex-col">
+      <div className="flex justify-between">
+        <button
+          onClick={() => {
+            navigate("/dashboard");
+          }}
+          className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded"
+        >
+          {"<"}
+        </button>
+        <h1 className="text-3xl font-bold flex justify-center text-teal-900">
+          Historias Clinicas
+        </h1>
+        <div></div>
+      </div>
+
       <div className="flex gap-3 justify-end">
         <input
           className="w-[15%] text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
@@ -44,24 +58,24 @@ function Historias() {
       </div>
       <div className="flex gap-3 flex-wrap">
         <input
-          className="w-[24%] text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+          className=" w-[24.3%] text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
           type="number"
           min={0}
           placeholder="Doc Ident"
         />
         <input
-          className="w-[24%] text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+          className=" w-[24.2%] text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
           type="text"
           placeholder="Est Civil"
         />
         <input
-          className="w-[24%] text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+          className=" w-[24%] text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
           type="number"
           min={0}
           placeholder="Telf. Fijo"
         />
         <input
-          className="w-[25%] text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+          className=" w-[24%] text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
           type="number"
           placeholder="Cel"
           min={0}
