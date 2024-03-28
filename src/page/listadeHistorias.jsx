@@ -3,9 +3,36 @@ function ListadeHistorias() {
   const navigate = useNavigate();
   return (
     <div>
-      <h2 className="text-3xl font-bold flex justify-center py-5 text-teal-700">
-        Historias Clinicas
-      </h2>
+      <div className="flex flex-row justify-between px-24">
+        <div className="w-[15%]"></div>
+        <h2 className="text-3xl font-bold flex justify-center py-5 text-teal-500">
+          Historias Clinicas
+        </h2>
+        <button
+          onClick={() => {
+            navigate("/historia");
+          }}
+          className="flex flex-row my-3  px-4 rounded items-center justify-center gap-1 bg-teal-500 text-teal-900 hover:text-white hover:bg-teal-600"
+        >
+          <svg
+            className="h-6 w-6 "
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            strokeWidth="2"
+            stroke="currentColor"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            {" "}
+            <path stroke="none" d="M0 0h24v24H0z" />{" "}
+            <line x1="12" y1="5" x2="12" y2="19" />{" "}
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+          <div className=" font-bold">Nueva Historia</div>
+        </button>
+      </div>
       <div className=" px-24 py-1">
         <table className="table-auto w-full bg-white border border-gray-200 divide-y divide-gray-200">
           <thead>
