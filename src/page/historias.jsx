@@ -46,8 +46,7 @@ function Historias() {
           <label className=" font-bold text-sm px-1 text-teal-600">FECHA</label>
           <input
             className="w-full text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
-            type="text"
-            placeholder="dd/mm/yy"
+            type="date"
           />
         </div>
       </div>
@@ -55,7 +54,7 @@ function Historias() {
         <h2 className="text-2xl font-bold text-teal-900">
           Datos de Afiliacion
         </h2>
-        <select className=" w-1/4 py-2 px-3 font-semibold  focus:outline-none border rounded focus:shadow-outline shadow appearance-none">
+        <select className=" w-1/4 py-2 px-3 font-semibold text-teal-600 focus:outline-none border rounded focus:shadow-outline shadow appearance-none">
           <option>Adulto</option>
           <option>Niño</option>
           <option>Ortodoncia</option>
@@ -118,11 +117,11 @@ function Historias() {
           <label className=" font-bold text-sm px-1 text-teal-600">
             Est Civil
           </label>
-          <input
-            className=" text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
-            type="text"
-            placeholder="Est Civil"
-          />
+          <select className="font-semibold text-teal-600 focus:outline-none border rounded focus:shadow-outline shadow appearance-none py-2 px-3">
+          <option>Soltero(a)</option>
+          <option>Casado(a)</option>
+          <option>Otro</option>
+        </select>
         </div>
         <div className="flex flex-col w-[24%]">
           <label className=" font-bold text-sm px-1 text-teal-600">

@@ -12,7 +12,7 @@ function ListadeHistorias() {
           onClick={() => {
             navigate("/historia");
           }}
-          className="flex flex-row my-3  px-4 rounded items-center justify-center gap-1 bg-teal-500 text-teal-900 hover:text-white hover:bg-teal-600"
+          className="flex flex-row my-3  px-4 rounded items-center justify-center gap-1 bg-teal-700 text-white hover:bg-teal-600"
         >
           <svg
             className="h-6 w-6 "
@@ -25,7 +25,6 @@ function ListadeHistorias() {
             strokeLinecap="round"
             strokeLinejoin="round"
           >
-            {" "}
             <path stroke="none" d="M0 0h24v24H0z" />{" "}
             <line x1="12" y1="5" x2="12" y2="19" />{" "}
             <line x1="5" y1="12" x2="19" y2="12" />
@@ -37,13 +36,13 @@ function ListadeHistorias() {
         <table className="table-auto w-full bg-white border border-gray-200 divide-y divide-gray-200">
           <thead>
             <tr>
-              <th className="px-6 py-3 bg-teal-600 text-left text-xs leading-4 font-medium text-white uppercase tracking-wider">
+              <th className="px-6 py-3 bg-teal-600 text-left text-md leading-4 font-medium text-white uppercase tracking-wider">
                 H.C. N°
               </th>
-              <th className="px-6 py-3 bg-teal-600  text-left text-xs leading-4 font-medium text-white uppercase tracking-wider">
+              <th className="px-6 py-3 bg-teal-600  text-left text-md leading-4 font-medium text-white uppercase tracking-wider">
                 Nombre y Apellido
               </th>
-              <th className="px-6 py-3 bg-teal-600  text-left text-xs leading-4 font-medium text-white uppercase tracking-wider">
+              <th className="px-6 py-3 bg-teal-600  text-left text-md leading-4 font-medium text-white uppercase tracking-wider">
                 Paciente
               </th>
             </tr>
