@@ -1,12 +1,121 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { getHistoria } from "../request/historias";
+import { useQuery } from "react-query";
+import { useEffect, useState } from "react";
 function Historias() {
+  
   const navigate = useNavigate();
+  const {
+    isLoading,
+    data: dataHistoria,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["historia"],
+    queryFn: getHistoria,
+  });
+  const {id} = useParams();
+  const [isNewHistoria, setIsNewHistoria] = useState(true); // Variable para controlar si es una nueva historia o una existente
+  const [historiaData, setHistoriaData] = useState({}); // Estado para almacenar los datos de la historia
+  useEffect(() => {
+    if (id && dataHistoria) {
+      // Si hay un ID y los datos de la historia están disponibles
+      const historia = dataHistoria.find((historia) => historia.id === id);
+      if (historia) {
+        setIsNewHistoria(false);
+        setHistoriaData(historia);
+      }
+    } else {
+      setIsNewHistoria(true);
+      // Reseteamos los datos de la historia si no hay un ID válido
+      setHistoriaData({});
+    }
+  }, [id, dataHistoria]);
+
+  const handleSaveOrUpdate = () => {
+    if (isNewHistoria) {
+      // Si es una nueva historia, guardar los datos
+      // Aquí deberías hacer la lógica para guardar los datos de la nueva historia
+    } else {
+      // Si es una historia existente, actualizar los datos
+      // Aquí deberías hacer la lógica para actualizar los datos de la historia existente
+    }
+  };
+
+  const [idh,setId]= useState("");
+  const [hcn,setHcn]= useState("");
+  const [fecha,setFecha]= useState("");
+  const [thistoria,setThistoria]= useState("");
+  const [nombreyapellido,setNombreyapellido]= useState("");
+  const [edad,setEdad]= useState(0);
+  const [direccion,setDireccion]= useState("");
+  const [referenia,setReferencia]= useState("");
+  const [dni,setDni]= useState(0);
+  const [estadocivil,setEstadocivil]= useState("");
+  const [telefono,setTelefono]= useState(0);
+  const [celular,setcelular]= useState(0);
+  const [operacion,setOperacion]= useState("");
+  const [lugarprocedencia,setLugarprocedencia]= useState("");
+  const [email,setEmail]= useState("");
+  const [antecedentes,setAntecedentes]= useState("");
+  const [alergias,setAlergias]= useState("");
+  const [copUsuario,setCopUsuario]= useState(0);
+  
+  const handlereset = ()=>{
+    setHcn("")
+    setFecha("")
+    setThistoria("")
+    setNombreyapellido("")
+    setEdad("")
+    setDireccion("")
+    setReferencia("")
+    setDni("")
+    setEstadocivil("")
+    setTelefono("")
+    setcelular("")
+    setOperacion("")
+    setLugarprocedencia("")
+    setEmail("")
+    setAntecedentes("")
+    setAlergias("")
+    setCopUsuario("")
+  }
+   
+
+  if (isLoading) {
+    return (
+     
+  <div className=" flex flex-col justify-center px-20 py-14 ">
+    <div className="animate-pulse flex w-full ">
+      <div className="flex-1 space-y-6 py-1">
+        <div className="h-2 bg-slate-700 rounded"></div>
+      </div>
+    </div>
+    <div className="animate-pulse flex w-full">
+      <div className="flex-1 space-y-6 py-1">
+        <div className="h-2 bg-slate-700 rounded"></div>
+      </div>
+    </div>
+    <div className="animate-pulse flex w-full">
+      <div className="flex-1 space-y-6 py-1">
+        <div className="h-2 bg-slate-700 rounded"></div>
+      </div>
+    </div>
+</div>
+      
+    );
+  } else if (isError) {
+    return <div className={""}>Error: {error.message}</div>;
+  }
+
+
   return (
     <div className="w-screen px-28 py-10 flex gap-3 flex-col">
       <div className="flex justify-between">
         <button
           onClick={() => {
             navigate("/dashboard");
+            handlereset()
           }}
           className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-1 px-2 rounded"
         >
@@ -40,6 +149,8 @@ function Historias() {
             type="number"
             min={0}
             placeholder="H.C N°"
+            value={historiaData.hcn || ""}
+            
           />
         </div>
         <div>
@@ -209,8 +320,8 @@ function Historias() {
         />
       </div>
       <div className="w-full flex justify-end">
-        <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded flex w-32 justify-center">
-          Guardar
+        <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded flex w-32 justify-center" onClick={handleSaveOrUpdate}>
+          {isNewHistoria ? "Guardar" : "Actualizar"}
         </button>
       </div>
     </div>

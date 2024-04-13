@@ -15,6 +15,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/historia" element={<Historia />} />
+        <Route path="/historia/:id" element={<Historia />} />
       </Routes>
     </div>
   );

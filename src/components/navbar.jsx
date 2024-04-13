@@ -1,7 +1,31 @@
 import logo from "../assets/svg/logodashboard.svg";
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 function Navbar() {
   const navigate = useNavigate();
+
+  const [userData, setUserData] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+      setUserData(JSON.parse(storedUserData));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (userData && userData.cargo === "Administrador") {
+      setIsAdmin(true);
+    } else {
+      setIsAdmin(false);
+    }
+  }, [userData]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("userData");
+    navigate("/");
+  };
   return (
     <div className="flex flex-row justify-between h-20 items-center px-20 bg-teal-600 w-screen">
       <Link to="/dashboard" className="flex gap-3">
@@ -12,12 +36,18 @@ function Navbar() {
       </Link>
       <div className="flex flex-row gap-3">
         <div className="font-bold text-white text-2xl flex items-center">
-          Bienvenido Administrador
+          Bienvenido {isAdmin ? (
+              <div >
+                  &nbsp;{userData.usuario}
+              </div>
+            ) : (
+              <div >
+                No administrador
+              </div>
+            )}
         </div>
         <button
-          onClick={() => {
-            navigate("/");
-          }}
+          onClick={handleLogout}
           className="flex justify-center items-center hover:bg-teal-500 hover:animate-squeeze px-1 py-1 rounded-lg"
         >
           <svg
