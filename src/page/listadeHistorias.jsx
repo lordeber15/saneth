@@ -16,6 +16,7 @@ function ListadeHistorias() {
     queryKey: ["historia"],
     queryFn: getHistoria,
   });
+
   if (isLoading) {
     return (
      
@@ -42,7 +43,7 @@ function ListadeHistorias() {
     return <div className={""}>Error: {error.message}</div>;
   }
   return (
-    <div>
+        <div>
       <div className="flex flex-row justify-between px-24">
         <div className="w-[15%]"></div>
         <h2 className="text-3xl font-bold flex justify-center py-5 text-teal-500">
@@ -73,7 +74,9 @@ function ListadeHistorias() {
         </button>
       </div>
 
-      <div className=" px-24 py-1">
+      {
+        dataHistoria && dataHistoria.length === 0 ? (<div className="text-5xl font-bold flex justify-center text-teal-600"> Aun no se tienen datos  </div>) : (
+          <div className=" px-24 py-1">
         <table className="table-auto w-full bg-white border border-gray-200 divide-y divide-gray-200">
           <thead>
             <tr>
@@ -115,6 +118,11 @@ function ListadeHistorias() {
           </tbody>
         </table>
       </div>
+
+        )
+      }
+
+      
     </div>
   );
 }

@@ -15,70 +15,117 @@ function Historias() {
     queryFn: getHistoria,
   });
   const {id} = useParams();
-  const [isNewHistoria, setIsNewHistoria] = useState(true); // Variable para controlar si es una nueva historia o una existente
-  const [historiaData, setHistoriaData] = useState({}); // Estado para almacenar los datos de la historia
-  useEffect(() => {
-    if (id && dataHistoria) {
-      // Si hay un ID y los datos de la historia están disponibles
-      const historia = dataHistoria.find((historia) => historia.id === id);
-      if (historia) {
-        setIsNewHistoria(false);
-        setHistoriaData(historia);
-      }
-    } else {
-      setIsNewHistoria(true);
-      // Reseteamos los datos de la historia si no hay un ID válido
-      setHistoriaData({});
-    }
-  }, [id, dataHistoria]);
 
-  const handleSaveOrUpdate = () => {
-    if (isNewHistoria) {
-      // Si es una nueva historia, guardar los datos
-      // Aquí deberías hacer la lógica para guardar los datos de la nueva historia
-    } else {
-      // Si es una historia existente, actualizar los datos
-      // Aquí deberías hacer la lógica para actualizar los datos de la historia existente
-    }
-  };
-
-  const [idh,setId]= useState("");
   const [hcn,setHcn]= useState("");
   const [fecha,setFecha]= useState("");
   const [thistoria,setThistoria]= useState("");
   const [nombreyapellido,setNombreyapellido]= useState("");
   const [edad,setEdad]= useState(0);
   const [direccion,setDireccion]= useState("");
-  const [referenia,setReferencia]= useState("");
+  const [referencia,setReferencia]= useState("");
   const [dni,setDni]= useState(0);
   const [estadocivil,setEstadocivil]= useState("");
   const [telefono,setTelefono]= useState(0);
-  const [celular,setcelular]= useState(0);
+  const [celular,setCelular]= useState(0);
   const [operacion,setOperacion]= useState("");
   const [lugarprocedencia,setLugarprocedencia]= useState("");
   const [email,setEmail]= useState("");
   const [antecedentes,setAntecedentes]= useState("");
   const [alergias,setAlergias]= useState("");
   const [copUsuario,setCopUsuario]= useState(0);
+
+  useEffect(() => {
+    if(id!=undefined){
+      setHcn(id)
+      const historiasData = dataHistoria.find((ehistorias)=> ehistorias.id == id);
+      setFecha(historiasData.fecha)
+    setThistoria(historiasData.thistoria)
+    setNombreyapellido(historiasData.nombreyapellido)
+    setEdad(historiasData.edad)
+    setDireccion(historiasData.direccion)
+    setReferencia(historiasData.referencia)
+    setDni(historiasData.dni)
+    setEstadocivil(historiasData.estadocivil)
+    setTelefono(historiasData.telefono)
+    setCelular(historiasData.celular)
+    setOperacion(historiasData.operacion)
+    setLugarprocedencia(historiasData.lugarprocedencia)
+    setEmail(historiasData.email)
+    setAntecedentes(historiasData.antecedentes)
+    setAlergias(historiasData.alergias)
+    setCopUsuario(historiasData.copUsuario)
+    }
+  }),[];
+  const handlehcn = (e)=>{
+    setHcn(e.target.value);
+  }
+  const handlefecha = (e)=>{
+    setFecha(e.target.value);
+  }
+  const handlethistoria = (e)=>{
+    setThistoria(e.target.value);
+  }
+  const handlenombreyapellido = (e)=>{
+    setNombreyapellido(e.target.value);
+  }
+  const handleEdad = (e)=>{
+    setEdad(e.target.value);
+  }
+  const handleDireccion = (e)=>{
+    setDireccion(e.target.value);
+  }
+  const handleReferencia = (e)=>{
+    setReferencia(e.target.value);
+  }
+  const handleDni = (e)=>{
+    setDni(e.target.value);
+  }
+  const handleEstadocivil = (e)=>{
+    setEstadocivil(e.target.value);
+  }
+  const handleTelefono = (e)=>{
+    setTelefono(e.target.value);
+  }
+  const handleCelular = (e)=>{
+    setCelular(e.target.value);
+  }
+  const handleOperacion = (e)=>{
+    setOperacion(e.target.value);
+  }
+  const handleLugardeprocedencia = (e)=>{
+    setLugarprocedencia(e.target.value);
+  }
+  const handleEmail = (e)=>{
+    setEmail(e.target.value);
+  }
+  const handleAntecedentes = (e)=>{
+    setAntecedentes(e.target.value);
+  }
+  const handleAlergias = (e)=>{
+    setAlergias(e.target.value);
+  }
+  const handleCop = (e)=>{
+    setCopUsuario(e.target.value);
+  }
   
   const handlereset = ()=>{
     setHcn("")
     setFecha("")
     setThistoria("")
     setNombreyapellido("")
-    setEdad("")
+    setEdad(0)
     setDireccion("")
     setReferencia("")
-    setDni("")
+    setDni(0)
     setEstadocivil("")
-    setTelefono("")
-    setcelular("")
+    setTelefono(0)
+    setCelular(0)
     setOperacion("")
     setLugarprocedencia("")
     setEmail("")
     setAntecedentes("")
     setAlergias("")
-    setCopUsuario("")
+    setCopUsuario(0)
   }
    
 
@@ -138,7 +185,6 @@ function Historias() {
         </h1>
         <div></div>
       </div>
-
       <div className="flex gap-3 justify-end">
         <div>
           <label className=" font-bold text-sm px-1 text-teal-600">
@@ -149,8 +195,8 @@ function Historias() {
             type="number"
             min={0}
             placeholder="H.C N°"
-            value={historiaData.hcn || ""}
-            
+            value={hcn}
+            onChange={handlehcn}
           />
         </div>
         <div>
@@ -158,6 +204,7 @@ function Historias() {
           <input
             className="w-full text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
             type="date"
+            
           />
         </div>
       </div>
@@ -165,7 +212,7 @@ function Historias() {
         <h2 className="text-2xl font-bold text-teal-900">
           Datos de Afiliacion
         </h2>
-        <select className=" w-1/4 py-2 px-3 font-semibold text-teal-600 focus:outline-none border rounded focus:shadow-outline shadow appearance-none">
+        <select value={thistoria} onChange={handlethistoria} className=" w-1/4 py-2 px-3 font-semibold text-teal-600 focus:outline-none border rounded focus:shadow-outline shadow appearance-none">
           <option>Adulto</option>
           <option>Niño</option>
           <option>Ortodoncia</option>
@@ -180,6 +227,8 @@ function Historias() {
             className="text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Nombre y Apellido"
+            value={nombreyapellido}
+            onChange={handlenombreyapellido}
           />
         </div>
         <div className="flex flex-col w-[30%]">
@@ -188,6 +237,8 @@ function Historias() {
             className=" text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
             type="number"
             placeholder="Edad"
+            value={edad}
+            onChange={handleEdad}
           />
         </div>
       </div>
@@ -200,6 +251,8 @@ function Historias() {
             className=" text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Direccion"
+            value={direccion}
+            onChange={handleDireccion}
           />
         </div>
         <div className="flex flex-col w-[50%]">
@@ -208,6 +261,8 @@ function Historias() {
             className=" text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Ref"
+            value={referencia}
+            onChange={handleReferencia}
           />
         </div>
       </div>
@@ -222,13 +277,15 @@ function Historias() {
             min={0}
             maxLength={8}
             placeholder="Doc Ident"
+            value={dni}
+            onChange={handleDni}
           />
         </div>
         <div className="flex flex-col w-[24.5%]">
           <label className=" font-bold text-sm px-1 text-teal-600">
             Est Civil
           </label>
-          <select className="font-semibold text-teal-600 focus:outline-none border rounded focus:shadow-outline shadow appearance-none py-2 px-3">
+          <select value={estadocivil} onChange={handleEstadocivil} className="font-semibold text-teal-600 focus:outline-none border rounded focus:shadow-outline shadow appearance-none py-2 px-3">
           <option>Soltero(a)</option>
           <option>Casado(a)</option>
           <option>Otro</option>
@@ -244,6 +301,8 @@ function Historias() {
             maxLength={9}
             min={0}
             placeholder="Telf. Fijo"
+            value={telefono}
+            onChange={handleTelefono}
           />
         </div>
         <div className="flex flex-col w-[24%]">
@@ -254,6 +313,8 @@ function Historias() {
             maxLength={9}
             placeholder="Cel"
             min={0}
+            value={celular}
+            onChange={handleCelular}
           />
         </div>
       </div>
@@ -266,6 +327,8 @@ function Historias() {
             className="text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Operacion"
+            value={operacion}
+            onChange={handleOperacion}
           />
         </div>
         <div className="flex flex-col w-1/2">
@@ -276,6 +339,8 @@ function Historias() {
             className=" text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Lugar de Procedencia"
+            value={lugarprocedencia}
+            onChange={handleLugardeprocedencia}
           />
         </div>
       </div>
@@ -286,6 +351,8 @@ function Historias() {
             className=" text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Email"
+            value={email}
+            onChange={handleEmail}
           />
         </div>
         <div className="flex flex-col w-1/2">
@@ -296,6 +363,8 @@ function Historias() {
             className=" text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Antecedentes patologicos (personales y/o familiares)"
+            value={antecedentes}
+            onChange={handleAntecedentes}
           />
         </div>
       </div>
@@ -307,6 +376,8 @@ function Historias() {
           className="w-full text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
           type="text"
           placeholder="Alergio a algun medicamento"
+          value={alergias}
+          onChange={handleAlergias}
         />
       </div>
       <div className="flex flex-col w-full ">
@@ -317,11 +388,13 @@ function Historias() {
           className="w-1/4 flex text-teal-800 font-semibold shadow appearance-none border rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
           type="text"
           placeholder="C.O.P."
+          value={copUsuario}
+          onChange={handleCop}
         />
       </div>
       <div className="w-full flex justify-end">
-        <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded flex w-32 justify-center" onClick={handleSaveOrUpdate}>
-          {isNewHistoria ? "Guardar" : "Actualizar"}
+        <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded flex w-32 justify-center" >
+          {id ? "Guardar" : "Actualizar"}
         </button>
       </div>
     </div>
